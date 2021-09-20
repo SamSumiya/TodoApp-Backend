@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS todos;
+
+CREATE todos (
+    id: BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    description TEXT
+)
