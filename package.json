@@ -23,6 +23,7 @@
     "@babel/plugin-syntax-class-properties": "^7.12.13",
     "@types/jest": "^27.0.1",
     "@types/pg": "^8.6.1",
+    "cors": "^2.8.5",
     "eslint": "^7.32.0",
     "jest": "^27.2.0",
     "nodemon": "^2.0.12",
