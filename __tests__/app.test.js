@@ -56,11 +56,31 @@ describe('demo routes', () => {
       isCompleted: false,
     };
     
-    const newTodo = await request(app)
+    const { body } = await request(app)
       .post('/api/v1/todos')
       .send(todo);
-    console.log(newTodo.body)
+    expect(body).toEqual({
+      id: "1", 
+      ...todo, 
+    })
   }); 
+
+  it('Test put by id to see if I can update a todo', async () => {
+    const prevTodo = { 
+      description: 'A todo needs to be updated', 
+      isCompleted: false, 
+    }
+    const updateTodo = { 
+      description: 'Finished to update todo', 
+      isCompleted: true, 
+    }
+    const selectedTodo = await Todo.insert(prevTodo.description, prevTodo.isCompleted);
+    const response = await request(app).put(`/api/v1/todos/${selectedTodo.id}`).send(updateTodo);
+    expect(response.body).toEqual({
+      id: "1", 
+      ...updateTodo, 
+    })
+  })
 
   it('Test delete by id to see if I can delete a existing todo', async () => {
     const todo = {
