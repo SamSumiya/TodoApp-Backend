@@ -36,4 +36,17 @@ describe('demo routes', () => {
       },
     ]);
   });
+
+  it('Test get by id to see if I can selected a todo by passing id', async () => {
+    const todo = {
+      description: 'Get by id todo', 
+      isCompleted: false, 
+    }
+    const insertedTodo = await Todo.insert(todo.description, todo.isCompleted); 
+    const selectedTodo = await request(app).get(`/api/v1/todos/${insertedTodo.id}`)
+    expect(selectedTodo.body).toEqual({
+      id: "1", 
+      ...todo, 
+    })
+  }); 
 });
