@@ -58,7 +58,21 @@ describe('demo routes', () => {
     
     const newTodo = await request(app)
       .post('/api/v1/todos')
-      .send(todo); 
+      .send(todo);
     console.log(newTodo.body)
+  }); 
+
+  it('Test delete by id to see if I can delete a existing todo', async () => {
+    const todo = {
+      description: 'This todo will be deleted', 
+      isCompleted: true, 
+    }
+    const existingTodo = await Todo.insert(todo.description, todo.isCompleted) 
+    const { body } = await request(app).delete(`/api/v1/todos/${existingTodo.id}`)
+    expect({
+      Message: `${body.description} is deleted`
+    }).toEqual({
+      Message: `${body.description} is deleted`
+    })
   })
 });
