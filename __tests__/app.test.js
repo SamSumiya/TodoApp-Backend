@@ -49,4 +49,16 @@ describe('demo routes', () => {
       ...todo, 
     })
   }); 
+
+  it('Test post by if to see if I can post a new todo', async () => {
+    const todo = {
+      description: 'This is a new todo that I just posted',
+      isCompleted: false,
+    };
+    
+    const newTodo = await request(app)
+      .post('/api/v1/todos')
+      .send(todo); 
+    console.log(newTodo.body)
+  })
 });
