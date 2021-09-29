@@ -20,7 +20,7 @@ describe('demo routes', () => {
     };
     const todo2 = {
       description: 'This is my first finished todo for today',
-      isCompleted: true,
+      isCompleted: false,
     };
     await Todo.insert(todo1.description, todo1.isCompleted);
     await Todo.insert(todo2.description, todo2.isCompleted);
